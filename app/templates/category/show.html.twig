@@ -51,6 +51,11 @@
 
     {% else %}
         <p>
+            <a href="{{ url('task_index') }}" title="{{ 'action_back_to_list'|trans }}">
+                {{ 'Back to list'|trans }}
+            </a>
+        </p>
+        <p>
             {{ 'message_empty_list'|trans }}
         </p>
     {% endif %}

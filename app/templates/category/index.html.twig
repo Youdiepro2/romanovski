@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'title_category_list'|trans }}
+    {{ 'Category list'|trans }}
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'title_category_list'|trans }}</h1>
+    <h1>{{ 'Category list'|trans }}</h1>
     {% if pagination is defined and pagination.items|length %}
         <h5>
             <p>
                 <a href="{{ 'create' }}" title="{{ 'add_category'|trans }}">
-                    {{ 'add_category'|trans }}
+                    {{ 'Add new category'|trans }}
                 </a>
             </p>
 
@@ -34,14 +34,16 @@
                     <td>{{ category.id }}</td>
                     <td>{{ category.title }}</td>
                     <td>
-                        <a href="{{ url('category_delete', {'id': category.id}) }}" title="{{ 'action_delete'|trans }}">
-                            {{ 'action_delete'|trans }}
-                        </a>
+                        {% if not category.tasks|length %}
+                            <a href="{{ url('category_delete', {id: category.id}) }}" title="{{ 'action_delete'|trans }}">
+                                {{ 'delete'|trans }}
+                            </a>
+                        {% endif %}
                         <a href="{{ url('category_show', {id: category.id}) }}" title="{{ 'action_view'|trans }}">
-                            {{ 'action_view'|trans }}
+                            {{ 'view'|trans }}
                         </a>
                         <a href="{{ url('category_edit', {id: category.id}) }}" title="{{ 'action_edit'|trans }}">
-                            {{ 'action_edit'|trans }}
+                            {{ 'edit'|trans }}
                         </a>
                     </td>
                 </tr>
@@ -50,7 +52,7 @@
         </table>
         <p>
             <a href="{{ url('task_index') }}" title="{{ 'action_back_to_list'|trans }}">
-                {{ 'action_back_to_list'|trans }}
+                {{ 'Back to list'|trans }}
             </a>
         </p>
 
