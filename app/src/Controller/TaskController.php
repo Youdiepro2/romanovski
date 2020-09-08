@@ -72,10 +72,6 @@ class TaskController extends AbstractController
      *     name="task_show",
      *     requirements={"id": "[1-9]\d*"},
      * )
-     * @IsGranted(
-     *     "VIEW",
-     *     subject="task",
-     * )
      */
     public function show(Task $task): Response
     {

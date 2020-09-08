@@ -66,10 +66,9 @@ class TaskVoter extends Voter
 
         // ... (check conditions and return true to grant permission) ...
         switch ($attribute) {
-            case 'VIEW':
             case 'EDIT':
             case 'DELETE':
-                if ($subject->getAuthor() === $user) {
+                if ($subject->getAuthor() === $user or ($this->security->isGranted('ROLE_ADMIN'))) {
                     return true;
                 }
                 break;

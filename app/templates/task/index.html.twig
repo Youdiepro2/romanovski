@@ -54,15 +54,11 @@
                     <td>{{ task.createdAt|date('Y/m/d') }}</td>
                     <td>{{ task.updatedAt|date('Y/m/d') }}</td>
                     <td>{{ task.title }}</td>
-
-
                     <td>{{ task.category.title }}</td>
                     <td>
-                        {% if is_granted('VIEW', task) %}
-                            <a href="{{ url('task_show', {id: task.id}) }}" title="{{ 'action_view'|trans }}">
-                                {{ 'view'|trans }}
-                            </a>
-                        {% endif %}
+                        <a href="{{ url('task_show', {id: task.id}) }}" title="{{ 'action_view'|trans }}">
+                            {{ 'view'|trans }}
+                        </a>
                         {% if is_granted('EDIT', task) %}
                             <a href="{{ url('task_edit', {id: task.id}) }}" title="{{ 'action_edit'|trans }}">
                                 {{ 'edit'|trans }}
