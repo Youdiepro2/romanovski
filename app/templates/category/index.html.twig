@@ -39,12 +39,11 @@
                                 {{ 'delete'|trans }}
                             </a>
                         {% endif %}
-                        <a href="{{ url('category_show', {id: category.id}) }}" title="{{ 'action_view'|trans }}">
-                            {{ 'view'|trans }}
-                        </a>
+                        {% if is_granted('ROLE_ADMIN') %}
                         <a href="{{ url('category_edit', {id: category.id}) }}" title="{{ 'action_edit'|trans }}">
                             {{ 'edit'|trans }}
                         </a>
+                        {% endif %}
                     </td>
                 </tr>
             {% endfor %}

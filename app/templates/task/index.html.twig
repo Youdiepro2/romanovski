@@ -5,6 +5,15 @@
 {% endblock %}
 
 {% block body %}
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+        <div>
+            <a href="{{ url('app_logout') }}">{{ 'logout'|trans }}</a>
+        </div>
+    {% else %}
+        <div>
+            <a href="{{ url('app_login') }}">{{ 'login'|trans }}</a>
+        </div>
+    {% endif %}
     <h1>{{ 'Bugtracker'|trans }}</h1>
     {% if pagination is defined and pagination.items|length %}
 
