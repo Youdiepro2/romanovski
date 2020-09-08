@@ -39,10 +39,10 @@
             <thead>
             <tr>
                 <th>{{ knp_pagination_sortable(pagination, 'id'|trans, 'task.id') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'created_at'|trans, 'task.createdAt') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'updated_at'|trans, 'task.updatedAt') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'title'|trans, 'task.title') }}</th>
-           {#      <th>{{ knp_pagination_sortable(pagination, 'label_tag', 'task.tags') }}</th> #}
+                <th>{{ knp_pagination_sortable(pagination, 'created_at:'|trans, 'task.createdAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'updated_at:'|trans, 'task.updatedAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Title'|trans, 'task.title') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Tags', 'task.tags') }}</th>
                 <th>{{ 'category'|trans }}</th>
                 <th>{{ 'actions'|trans }}</th>
             </tr>
@@ -54,6 +54,13 @@
                     <td>{{ task.createdAt|date('Y/m/d') }}</td>
                     <td>{{ task.updatedAt|date('Y/m/d') }}</td>
                     <td>{{ task.title }}</td>
+                    <td>
+                        {% for tag in task.tags %}
+                            <a href="{{ url('task_index', {'filters' : {'tag' : tag.id}}) }}" title="{{ tag.title }}">
+                                {{ tag.title }}
+                            </a>
+                        {% endfor %}
+                    </td>
                     <td>{{ task.category.title }}</td>
                     <td>
                         <a href="{{ url('task_show', {id: task.id}) }}" title="{{ 'action_view'|trans }}">
