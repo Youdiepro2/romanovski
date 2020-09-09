@@ -34,16 +34,16 @@
                     <td>{{ category.id }}</td>
                     <td>{{ category.title }}</td>
                     <td>
-                        <a href="{{ url('category_show', {id: category.id}) }}" title="{{ 'action_show'|trans }}">
+                        <a class="btn btn-primary" href="{{ url('category_show', {id: category.id}) }}" title="{{ 'action_show'|trans }}">
                             {{ 'show'|trans }}
                         </a>
                         {% if is_granted('ROLE_ADMIN') %}
-                        <a href="{{ url('category_edit', {id: category.id}) }}" title="{{ 'action_edit'|trans }}">
+                        <a class="btn btn-primary"  href="{{ url('category_edit', {id: category.id}) }}" title="{{ 'action_edit'|trans }}">
                             {{ 'edit'|trans }}
                         </a>
                         {% endif %}
                         {% if not category.tasks|length and is_granted('ROLE_ADMIN') %}
-                            <a href="{{ url('category_delete', {id: category.id}) }}" title="{{ 'action_delete'|trans }}">
+                            <a class="btn btn-primary"  href="{{ url('category_delete', {id: category.id}) }}" title="{{ 'action_delete'|trans }}">
                                 {{ 'delete'|trans }}
                             </a>
                         {% endif %}

@@ -1,6 +1,28 @@
 p {
     color: red;
 }
- {
-    background-color: coral;
+.table {
+    background-color: #f1f3f8;
+}
+
+.btn-primary {
+    color:#393b44;
+    background-color: #d6e0f0;
+    border-color: #26272e;
+}
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #393b44;
+    background-color: #d6e0f0;
+    border-color: #26272e;
+}
+
+a {
+    color: #3d6691;
+    text-decoration: none;
+    background-color: transparent;
+}
+.page-link {
+    color: #3d6691;
 }
