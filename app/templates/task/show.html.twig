@@ -16,11 +16,27 @@
             <dd>{{ task.updatedAt|date('Y/m/d') }}</dd>
             <dt>{{ 'Category'|trans }}</dt>
             <dd>{{  task.category.title }}</dd>
+            <dt>{{ 'label_tags'|trans }}</dt>
+            <dd>{%  for tag in task.tags %}
+                    {{ tag.title }}
+                {% endfor %}
+            </dd>
             <dt>{{ 'Title:'|trans }}</dt>
             <dd>{{  task.title }}</dd>
         </dl>
         <p>
-            <a href="{{ url('task_index') }}" title="{{ 'action_back_to_list'|trans }}">
+            {% if is_granted('EDIT', task) %}
+                <a class="btn btn-primary" href="{{ url('task_edit', {id: task.id}) }}" title="{{ 'action_edit'|trans }}">
+                    {{ 'edit'|trans }}
+                </a>
+            {% endif %}
+            {% if is_granted('DELETE', task) %}
+                <a class="btn btn-primary" href="{{ url('task_delete', {id: task.id}) }}" title="{{ 'action_delete'|trans }}">
+                    {{ 'delete'|trans }}
+                </a>
+            {% endif %}
+        </p>
+        <p><a class="btn btn-primary" href="{{ url('task_index') }}" title="{{ 'action_back_to_list'|trans }}">
                 {{ 'Back to list'|trans }}
             </a>
         </p>

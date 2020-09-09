@@ -100,7 +100,7 @@ class CategoryController extends AbstractController
             $category->setUpdatedAt(new \DateTime());
             $categoryRepository->save($category);
 
-            $this->addFlash('success', 'message_updated_successfully');
+            $this->addFlash('success', 'Updated successfully');
 
             return $this->redirectToRoute('category_index');
         }
@@ -144,7 +144,7 @@ class CategoryController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $categoryRepository->delete($category);
-            $this->addFlash('success', 'message.deleted_successfully');
+            $this->addFlash('success', 'Deleted successfully');
 
             return $this->redirectToRoute('category_index');
         }
@@ -185,6 +185,7 @@ class CategoryController extends AbstractController
             $category->setCreatedAt(new \DateTime());
             $category->setUpdatedAt(new \DateTime());
             $categoryRepository->save($category);
+            $this->addFlash('success', 'Created successfully');
 
             return $this->redirectToRoute('category_index');
         }

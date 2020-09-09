@@ -107,7 +107,7 @@ class TaskController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $task->setAuthor($this->getUser());
             $taskRepository->save($task);
-            $this->addFlash('success', 'message_created_successfully');
+            $this->addFlash('success', 'Created successfully');
 
             return $this->redirectToRoute('task_index');
         }
@@ -148,7 +148,7 @@ class TaskController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $taskRepository->save($task);
-            $this->addFlash('success', 'message_updated_successfully');
+            $this->addFlash('success', 'Updated successfully');
 
             return $this->redirectToRoute('task_index');
         }
@@ -196,7 +196,7 @@ class TaskController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $taskRepository->delete($task);
-            $this->addFlash('success', 'message_deleted_successfully');
+            $this->addFlash('success', 'Deleted successfully');
 
             return $this->redirectToRoute('task_index');
         }
