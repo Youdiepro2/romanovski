@@ -26,3 +26,12 @@ a {
 .page-link {
     color: #3d6691;
 }
+
+.center {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.margin {
+    margin-left: 10px;
+}

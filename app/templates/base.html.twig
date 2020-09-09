@@ -11,11 +11,18 @@
 <body>
 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
     <div>
-        <a href="{{ url('app_logout') }}">{{ 'logout'|trans }}</a>
+        <a href="{{ app.user.id }}" class="user">
+            {{ app.user.email }}
+        </a>
+    </div>
+    <div>
+        <a class="btn btn-primary" href="{{ url('app_logout') }}" >
+            {{ 'Logout'|trans }}
+        </a>
     </div>
 {% else %}
     <div>
-        <a href="{{ url('app_login') }}">{{ 'login'|trans }}</a>
+        <a class="btn btn-primary" href="{{ url('app_login') }}">{{ 'Login'|trans }}</a>
     </div>
 {% endif %}
 
