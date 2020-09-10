@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'Category list'|trans }}
+    {{ 'Category list' }}
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'Category list'|trans }}</h1>
+    <h1>{{ 'Category list' }}</h1>
     {% if pagination is defined and pagination.items|length %}
         <h5>
             <p>
-                <a class="btn btn-primary" href="{{ 'create' }}" title="{{ 'add_category'|trans }}">
-                    {{ 'Add new category'|trans }}
+                <a class="btn btn-primary" href="{{ 'create' }}" title="{{ 'add_category' }}">
+                    {{ 'Add new category' }}
                 </a>
             </p>
 
@@ -23,9 +23,9 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'label_id'|trans, 'category.id') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'label_category'|trans, 'category.title') }}</th>
-                <th>{{ 'label_actions'|trans }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_id', 'category.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'label_category', 'category.title') }}</th>
+                <th>{{ 'label_actions' }}</th>
             </tr>
             </thead>
             <tbody>
@@ -34,17 +34,17 @@
                     <td>{{ category.id }}</td>
                     <td>{{ category.title }}</td>
                     <td>
-                        <a class="btn btn-primary" href="{{ url('category_show', {id: category.id}) }}" title="{{ 'action_show'|trans }}">
-                            {{ 'show'|trans }}
+                        <a class="btn btn-primary" href="{{ url('category_show', {id: category.id}) }}" title="{{ 'action_show' }}">
+                            {{ 'show' }}
                         </a>
                         {% if is_granted('ROLE_ADMIN') %}
-                        <a class="btn btn-primary"  href="{{ url('category_edit', {id: category.id}) }}" title="{{ 'action_edit'|trans }}">
-                            {{ 'edit'|trans }}
+                        <a class="btn btn-primary"  href="{{ url('category_edit', {id: category.id}) }}" title="{{ 'action_edit' }}">
+                            {{ 'edit' }}
                         </a>
                         {% endif %}
                         {% if not category.tasks|length and is_granted('ROLE_ADMIN') %}
-                            <a class="btn btn-primary"  href="{{ url('category_delete', {id: category.id}) }}" title="{{ 'action_delete'|trans }}">
-                                {{ 'delete'|trans }}
+                            <a class="btn btn-primary"  href="{{ url('category_delete', {id: category.id}) }}" title="{{ 'action_delete' }}">
+                                {{ 'delete' }}
                             </a>
                         {% endif %}
                     </td>
@@ -53,8 +53,8 @@
             </tbody>
         </table>
         <p>
-            <a class="btn btn-primary" href="{{ url('task_index') }}" title="{{ 'action_back_to_list'|trans }}">
-                {{ 'Back to list'|trans }}
+            <a class="btn btn-primary" href="{{ url('task_index') }}" title="{{ 'action_back_to_list' }}">
+                {{ 'Back to list' }}
             </a>
         </p>
 
@@ -66,7 +66,7 @@
         <p>
             {% include 'default/_single_flash_message.html.twig' with {
                 type: 'warning',
-                message: 'message_empty_list'|trans
+                message: 'message_empty_list'
             } %}
         </p>
     {% endif %}

@@ -11,18 +11,24 @@
 <body>
 {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
     <div>
-        <a href="{{ app.user.id }}" class="user">
-            {{ app.user.email }}
+        {% if is_granted('ROLE_ADMIN') %}
+        <a href="{{ url('user_show', {id: app.user.id}) }}">
+            {{ app.user.email }}</a>
         </a>
+        {% else %}
+        <a {{ url('user_show', {id: app.user.id}) }}">
+            {{ app.user.email }} </a>
+        </a>
+        {% endif %}
     </div>
     <div>
         <a class="btn btn-primary" href="{{ url('app_logout') }}" >
-            {{ 'Logout'|trans }}
+            {{ 'Logout' }}
         </a>
     </div>
 {% else %}
     <div>
-        <a class="btn btn-primary" href="{{ url('app_login') }}">{{ 'Login'|trans }}</a>
+        <a class="btn btn-primary" href="{{ url('app_login') }}">{{ 'Login' }}</a>
     </div>
 {% endif %}
 

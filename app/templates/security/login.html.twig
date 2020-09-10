@@ -42,6 +42,13 @@
     <a href="{{ url('task_index') }}" title="{{ 'action_back_to_list'|trans }}">
         {{ 'Continue as guest'|trans }}
     </a>
+    {% if is_granted('ROLE_ADMIN') %}
+    <a>
+        <a href="{{ url('change_password', {id: user.id}) }}" title="{{ 'change_password'|trans }}" class="btn btn-info">
+            {{ 'change_password'|trans }}
+        </a>
+    </a>
+    {% endif %}
 </form>
 <div class="container-fluid">
     {% include 'default/_flash_messages.html.twig' %}

@@ -8,41 +8,41 @@
     <h1>{{ 'Bug details:'|trans({'%id%': task.id|default('')}) }}</h1>
     {% if task is defined and task|length %}
         <dl class="dl-horizontal">
-            <dt>{{ 'id'|trans }}</dt>
+            <dt>{{ 'id' }}</dt>
             <dd>{{ task.id }}</dd>
-            <dt>{{ 'Created_at'|trans }}</dt>
+            <dt>{{ 'Created_at' }}</dt>
             <dd>{{ task.createdAt|date('Y/m/d') }}</dd>
-            <dt>{{ 'Updated_at'|trans }}</dt>
+            <dt>{{ 'Updated_at' }}</dt>
             <dd>{{ task.updatedAt|date('Y/m/d') }}</dd>
-            <dt>{{ 'Category'|trans }}</dt>
+            <dt>{{ 'Category' }}</dt>
             <dd>{{  task.category.title }}</dd>
-            <dt>{{ 'label_tags'|trans }}</dt>
+            <dt>{{ 'label_tags' }}</dt>
             <dd>{%  for tag in task.tags %}
                     {{ tag.title }}
                 {% endfor %}
             </dd>
-            <dt>{{ 'Title:'|trans }}</dt>
+            <dt>{{ 'Title:' }}</dt>
             <dd>{{  task.title }}</dd>
         </dl>
         <p>
             {% if is_granted('EDIT', task) %}
-                <a class="btn btn-primary" href="{{ url('task_edit', {id: task.id}) }}" title="{{ 'action_edit'|trans }}">
-                    {{ 'edit'|trans }}
+                <a class="btn btn-primary" href="{{ url('task_edit', {id: task.id}) }}" title="{{ 'action_edit' }}">
+                    {{ 'edit' }}
                 </a>
             {% endif %}
             {% if is_granted('DELETE', task) %}
-                <a class="btn btn-primary" href="{{ url('task_delete', {id: task.id}) }}" title="{{ 'action_delete'|trans }}">
-                    {{ 'delete'|trans }}
+                <a class="btn btn-primary" href="{{ url('task_delete', {id: task.id}) }}" title="{{ 'action_delete' }}">
+                    {{ 'delete' }}
                 </a>
             {% endif %}
         </p>
-        <p><a class="btn btn-primary" href="{{ url('task_index') }}" title="{{ 'action_back_to_list'|trans }}">
-                {{ 'Back to list'|trans }}
+        <p><a class="btn btn-primary" href="{{ url('task_index') }}" title="{{ 'action_back_to_list' }}">
+                {{ 'Back to list' }}
             </a>
         </p>
     {% else %}
         <p>
-            {{ 'message_item_not_found'|trans }}
+            {{ 'message_item_not_found' }}
         </p>
     {% endif %}
 {% endblock %}

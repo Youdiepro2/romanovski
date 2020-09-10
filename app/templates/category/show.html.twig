@@ -8,31 +8,31 @@
     <h1>{{ 'Category details:'|trans({'%id%': category.id|default('')}) }}</h1>
     {% if category is defined and category|length %}
         <dl class="dl-horizontal">
-            <dt>{{ 'id'|trans }}</dt>
+            <dt>{{ 'id' }}</dt>
             <dd>{{ category.id }}</dd>
-            <dt>{{ 'Created_at'|trans }}</dt>
+            <dt>{{ 'Created_at' }}</dt>
             <dd>{{ category.createdAt|date('Y/m/d') }}</dd>
-            <dt>{{ 'Updated_at'|trans }}</dt>
+            <dt>{{ 'Updated_at' }}</dt>
             <dd>{{ category.updatedAt|date('Y/m/d') }}</dd>
-            <dt>{{ 'Title:'|trans }}</dt>
+            <dt>{{ 'Title:' }}</dt>
             <dd>{{  category.title }}</dd>
-            <dt>{{ 'label_tasks'|trans }}</dt>
+            <dt>{{ 'label_tasks' }}</dt>
             <dd>
                 {% for task in category.tasks %}
-                    <a href="{{ url('task_show', {id: task.id}) }}" title="{{ 'task_show'|trans }}">
+                    <a href="{{ url('task_show', {id: task.id}) }}" title="{{ 'task_show' }}">
                         {{ task.title }}
                     </a>|
                 {%  endfor %}
             </dd>
         </dl>
         <p>
-            <a class="btn btn-primary" href="{{ url('category_index') }}" title="{{ 'action_back_to_list'|trans }}">
-                {{ 'Back to list'|trans }}
+            <a class="btn btn-primary" href="{{ url('category_index') }}" title="{{ 'action_back_to_list' }}">
+                {{ 'Back to list' }}
             </a>
         </p>
     {% else %}
         <p>
-            {{ 'message_item_not_found'|trans }}
+            {{ 'message_item_not_found' }}
         </p>
     {% endif %}
 {% endblock %}

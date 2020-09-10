@@ -1,21 +1,25 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-    {{ 'Bugtracker'|trans }}
+    {{ 'Bugtracker' }}
 {% endblock %}
 
 {% block body %}
-    <h1>{{ 'Bugtracker'|trans }}</h1>
+    <h1>{{ 'Bugtracker list' }}</h1>
     {% if pagination is defined and pagination.items|length %}
-
         <h5>
             <p>
-                <a class="btn btn-primary" href="{{ 'create' }}" title="{{ 'add_task'|trans }}">
-                    {{ 'New bug report'|trans }}
+                <a class="btn btn-primary" href="{{ 'create' }}" title="{{ 'add_task' }}">
+                    {{ 'New bug report' }}
                 </a>
-                <a class="btn btn-primary" href="{{ url('category_index') }}" title="{{ 'category_index'|trans }}">
-                    {{ 'Show categories'|trans }}
+                <a class="btn btn-primary" href="{{ url('category_index') }}" title="{{ 'category_index' }}">
+                    {{ 'Show categories' }}
                 </a>
+                {% if is_granted('ROLE_ADMIN') %}
+                <a class="btn btn-primary" href="{{ url('user_index') }}" title="{{ 'user_index' }}">
+                    {{ 'Show users' }}
+                </a>
+                {% endif %}
             </p>
         </h5>
 
@@ -26,13 +30,13 @@
         <table class="table table-striped">
             <thead>
             <tr>
-                <th>{{ knp_pagination_sortable(pagination, 'Id'|trans, 'task.id') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Created at:'|trans, 'task.createdAt') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Updated at:'|trans, 'task.updatedAt') }}</th>
-                <th>{{ knp_pagination_sortable(pagination, 'Title'|trans, 'task.title') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Id', 'task.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Created at:', 'task.createdAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Updated at:', 'task.updatedAt') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Title', 'task.title') }}</th>
                 <th>{{ knp_pagination_sortable(pagination, 'Tags', 'task.tags') }}</th>
-                <th>{{ 'Category'|trans }}</th>
-                <th>{{ 'Actions'|trans }}</th>
+                <th>{{ 'Category' }}</th>
+                <th>{{ 'Actions' }}</th>
             </tr>
             </thead>
             <tbody>
@@ -51,17 +55,17 @@
                     </td>
                     <td>{{ task.category.title }}</td>
                     <td>
-                        <a class="btn btn-primary" href="{{ url('task_show', {id: task.id}) }}" title="{{ 'action_view'|trans }}">
-                            {{ 'view'|trans }}
+                        <a class="btn btn-primary" href="{{ url('task_show', {id: task.id}) }}" title="{{ 'action_view' }}">
+                            {{ 'view' }}
                         </a>
                         {% if is_granted('EDIT', task) %}
-                            <a class="btn btn-primary" href="{{ url('task_edit', {id: task.id}) }}" title="{{ 'action_edit'|trans }}">
-                                {{ 'edit'|trans }}
+                            <a class="btn btn-primary" href="{{ url('task_edit', {id: task.id}) }}" title="{{ 'action_edit' }}">
+                                {{ 'edit' }}
                             </a>
                         {% endif %}
                         {% if is_granted('DELETE', task) %}
-                            <a class="btn btn-primary" href="{{ url('task_delete', {id: task.id}) }}" title="{{ 'action_delete'|trans }}">
-                                {{ 'delete'|trans }}
+                            <a class="btn btn-primary" href="{{ url('task_delete', {id: task.id}) }}" title="{{ 'action_delete' }}">
+                                {{ 'delete' }}
                             </a>
                         {% endif %}
                     </td>
@@ -76,7 +80,7 @@
 
     {% else %}
         <p>
-            {{ 'message_empty_list'|trans }}
+            {{ 'message_empty_list' }}
         </p>
     {% endif %}
 {% endblock %}
