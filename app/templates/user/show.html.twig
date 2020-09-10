@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'title_user_details'|trans({'%id%': user.id|default('')}) }}
+{% endblock %}
+
+{% block body %}
+    <h1>{{ 'User info'|trans({'%id%': user.id|default('')}) }}</h1>
+    {% if user is defined and user|length %}
+        <dl class="dl-horizontal">
+            <dt>{{ 'Id' }}</dt>
+            <dd>{{ user.id }}</dd>
+            <dt>{{ 'E-mail' }}</dt>
+            <dd>{{ user.email }}</dd>
+        </dl>
+
+        <p>
+            <a class="btn btn-primary" href="{{ url('change_password', {id: user.id}) }}" title="{{ 'Change password' }}">
+                {{ 'Change password' }}
+            </a>
+        </p>
+        <p>
+            <a class="btn btn-primary" href="{{ url('user_index') }}" title="{{ 'action_back_to_list' }}">
+                {{ 'Back' }}
+            </a>
+        </p>
+    {% else %}
+        <p>
+            {{ 'message_item_not_found' }}
+        </p>
+    {% endif %}
+{% endblock %}

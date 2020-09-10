@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'User_list' }}
+{% endblock %}
+
+{% block body %}
+
+    <h1>{{ 'User list' }}</h1>
+
+    {% if pagination is defined and pagination.items|length %}
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>{{ knp_pagination_sortable(pagination, 'Id', 'user.id') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Name', 'user.email') }}</th>
+                <th>{{ knp_pagination_sortable(pagination, 'Roles', 'user.roles') }}</th>
+                <th>{{ 'Actions' }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for user in pagination.items %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.email }}</td>
+                    <td>
+                        <p>
+                            {% for role in user.roles %}
+                                    {{ role }}
+                            {% endfor %}
+                        </p>
+                    </td>
+                    <td>
+                        <a href="{{ url('user_show', {id: user.id}) }}" title="{{ 'action_view' }}">
+                            Show
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <p>
+            <a class="btn btn-primary" href="{{ url('task_index') }}" title="{{ 'action_back_to_list' }}">
+                {{ 'Back to list' }}
+            </a>
+        </p>
+
+        <div class="navigation text-center">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
+    {% else %}
+        <p>
+            {% include 'default/_single_flash_message.html.twig' with {
+                type: 'warning',
+                message: 'message.empty_list'
+            } %}
+        </p>
+    {% endif %}
+{% endblock %}
